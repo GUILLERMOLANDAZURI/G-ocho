@@ -1,15 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>G-ocho</title>
-    <link rel="shortcut icon" type="image/x-icon" href="<?= base_url()?>PLANTILLA/imagenes/g-ocho.png">
-    <link href="<?= base_url()?>PLANTILLA/css/bootstrap.min.css" rel="stylesheet">
-    <link href="<?= base_url()?>PLANTILLA/font-awesome/css/font-awesome.css" rel="stylesheet">
-    <link href="<?= base_url()?>PLANTILLA/css/animate.css" rel="stylesheet">
-    <link href="<?= base_url()?>PLANTILLA/css/style.css" rel="stylesheet">
-    <link href="<?= base_url()?>PLANTILLA/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
+<?php require_once 'inc/css.php'; ?>
 </head>
 
 <body class="top-navigation">
@@ -116,33 +108,7 @@
 
 </div>
 </div>
-<!-- Mainly scripts -->
-<script src="<?= base_url()?>PLANTILLA/js/jquery-3.1.1.min.js"></script>
-<script src="<?= base_url()?>PLANTILLA/js/popper.min.js"></script>
-<script src="<?= base_url()?>PLANTILLA/js/bootstrap.js"></script>
-<script src="<?= base_url()?>PLANTILLA/js/plugins/metisMenu/jquery.metisMenu.js"></script>
-<script src="<?= base_url()?>PLANTILLA/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-
-<!-- Custom and plugin javascript -->
-<script src="<?= base_url()?>PLANTILLA/js/inspinia.js"></script>
-<script src="<?= base_url()?>PLANTILLA/js/plugins/pace/pace.min.js"></script>
-
-<!-- Flot -->
-<script src="<?= base_url()?>PLANTILLA/js/plugins/flot/jquery.flot.js"></script>
-<script src="<?= base_url()?>PLANTILLA/js/plugins/flot/jquery.flot.tooltip.min.js"></script>
-<script src="<?= base_url()?>PLANTILLA/js/plugins/flot/jquery.flot.resize.js"></script>
-
-<!-- ChartJS-->
-<script src="<?= base_url()?>PLANTILLA/js/plugins/chartJs/Chart.min.js"></script>
-
-<!-- Peity -->
-<script src="<?= base_url()?>PLANTILLA/js/plugins/peity/jquery.peity.min.js"></script>
-<!-- Peity demo -->
-<script src="<?= base_url()?>PLANTILLA/js/demo/peity-demo.js"></script>
-
-<!-- Data Tables -->
-<script src="<?= base_url()?>PLANTILLA/js/plugins/dataTables/datatables.min.js"></script>
-<script src="<?= base_url()?>PLANTILLA/js/plugins/dataTables/dataTables.bootstrap4.min.js"></script>
+<?php require_once 'inc/js.php'; ?>
 
 
 

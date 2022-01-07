@@ -1,21 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>G-ocho</title>
-    <link rel="shortcut icon" type="image/x-icon" href="<?= base_url()?>PLANTILLA/imagenes/g-ocho.png">
-    <link href="<?= base_url()?>PLANTILLA/css/bootstrap.min.css" rel="stylesheet">
-    <link href="<?= base_url()?>PLANTILLA/font-awesome/css/font-awesome.css" rel="stylesheet">
-    <link href="<?= base_url()?>PLANTILLA/css/animate.css" rel="stylesheet">
-    <link href="<?= base_url()?>PLANTILLA/css/style.css" rel="stylesheet">
-    <link href="<?= base_url()?>PLANTILLA/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
+    <?php require_once 'inc/css.php'; ?>
 </head>
-
 <body class="top-navigation">
-
-
-
     <div id="wrapper">
         <div id="page-wrapper" class="gray-bg">
             <div class="row border-bottom white-bg">
@@ -32,7 +20,7 @@
                         </ul>
                         <ul class="nav navbar-top-links navbar-right">
                             <li>
-                                <a href="login.html">
+                                <a href="<?= base_url()?>salir">
                                     <i class="fa fa-sign-out"></i>  Cerrar sesión
                                 </a>
                             </li>
@@ -40,37 +28,51 @@
                     </div>
                 </nav>
             </div>
+            <div class="modal inmodal" id="myModal4" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content animated fadeIn">
+                        <form class="m-t" role="form" action="" method="POST">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                <i class="fa fa-trash modal-icon"></i>
+                                <h4 class="modal-title">Este proceso es irreversible.!</h4>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-white" data-dismiss="modal">Cerrar</button>
+                                <button type="submit" name="borrar" class="btn btn-danger">Borrar cuenta</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
             <div class=" wrapper-content">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6">
                            <center>
                             <img width="40%" src="<?= base_url()?>PLANTILLA/imagenes/g-ocho.png">
-                            
+
                             <h2 class="font-bold">Actualizar datos</h2>
                         </center>
                     </div>
-
                     <div class="col-md-6">
-
                         <div class="ibox-content">
-                            <form class="m-t" role="form" action="index.html">
+                            <form class="m-t" role="form" action="" method="POST">
                                 <div class="form-group">
-                                    <input type="email" class="form-control" placeholder="Nombre de usuario" required="">
+                                    <input disabled type="text" class="form-control" name="nombre" placeholder="Nombre de usuario" value="<?=$this->session->userdata('usuario')?>">
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" class="form-control" placeholder="Contraseña" required="">
+                                    <input type="password" class="form-control" name="contrasena" placeholder="Contraseña" required="">
                                 </div>
                                 <button type="submit" class="btn btn-primary block full-width m-b">Actualizar cuenta</button>
                                 <p class="text-muted text-center">
                                     <small>Tener en cuenta que esta accion no se puede revertir </small>
                                 </p>
-                                <a class="btn btn-sm btn-danger btn-block" href="<?= base_url()?>">Borrar cuenta</a>
                             </form>
+                            <button type="button" class="btn btn-sm btn-danger btn-block" data-toggle="modal" data-target="#myModal4">Borrar cuenta</button>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
         <div class="footer">
@@ -78,39 +80,29 @@
                 <strong>Guillermo Landazuri Amaya</strong>
             </div>
         </div>
-
     </div>
 </div>
-<!-- Mainly scripts -->
-<script src="<?= base_url()?>PLANTILLA/js/jquery-3.1.1.min.js"></script>
-<script src="<?= base_url()?>PLANTILLA/js/popper.min.js"></script>
-<script src="<?= base_url()?>PLANTILLA/js/bootstrap.js"></script>
-<script src="<?= base_url()?>PLANTILLA/js/plugins/metisMenu/jquery.metisMenu.js"></script>
-<script src="<?= base_url()?>PLANTILLA/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-
-<!-- Custom and plugin javascript -->
-<script src="<?= base_url()?>PLANTILLA/js/inspinia.js"></script>
-<script src="<?= base_url()?>PLANTILLA/js/plugins/pace/pace.min.js"></script>
-
-<!-- Flot -->
-<script src="<?= base_url()?>PLANTILLA/js/plugins/flot/jquery.flot.js"></script>
-<script src="<?= base_url()?>PLANTILLA/js/plugins/flot/jquery.flot.tooltip.min.js"></script>
-<script src="<?= base_url()?>PLANTILLA/js/plugins/flot/jquery.flot.resize.js"></script>
-
-<!-- ChartJS-->
-<script src="<?= base_url()?>PLANTILLA/js/plugins/chartJs/Chart.min.js"></script>
-
-<!-- Peity -->
-<script src="<?= base_url()?>PLANTILLA/js/plugins/peity/jquery.peity.min.js"></script>
-<!-- Peity demo -->
-<script src="<?= base_url()?>PLANTILLA/js/demo/peity-demo.js"></script>
-
-<!-- Data Tables -->
-<script src="<?= base_url()?>PLANTILLA/js/plugins/dataTables/datatables.min.js"></script>
-<script src="<?= base_url()?>PLANTILLA/js/plugins/dataTables/dataTables.bootstrap4.min.js"></script>
-
-
-
+<?php 
+if (@$mensaje == 'success') {
+    echo '
+    <script>
+        swal({
+            title: "¡Buen trabajo!",
+            text: "'.$texto.'",
+            type: "success"
+        });
+    </script>';
+}
+if (@$mensaje == 'error') {
+    echo '
+    <script>
+        swal({
+            title: "¡ALGO PASO!",
+            text: "'.$texto.'",
+            type: "error"
+        });
+    </script>';
+}
+?>
 </body>
-
 </html>

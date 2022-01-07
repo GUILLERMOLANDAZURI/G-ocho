@@ -1,19 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>G-ocho</title>
-    <link rel="shortcut icon" type="image/x-icon" href="<?= base_url()?>PLANTILLA/imagenes/g-ocho.png">
-    <link href="<?= base_url()?>PLANTILLA/css/bootstrap.min.css" rel="stylesheet">
-    <link href="<?= base_url()?>PLANTILLA/font-awesome/css/font-awesome.css" rel="stylesheet">
-    <link href="<?= base_url()?>PLANTILLA/css/animate.css" rel="stylesheet">
-    <link href="<?= base_url()?>PLANTILLA/css/style.css" rel="stylesheet">
-    <link href="<?= base_url()?>PLANTILLA/css/plugins/dataTables/datatables.min.css" rel="stylesheet">
+<?php require_once 'inc/css.php'; ?>
 </head>
-
 <body class="top-navigation">
-
     <div id="wrapper">
         <div id="page-wrapper" class="gray-bg">
             <div class="row border-bottom white-bg">
@@ -30,7 +20,7 @@
                         </ul>
                         <ul class="nav navbar-top-links navbar-right">
                             <li>
-                                <a href="login.html">
+                                <a href="<?= base_url()?>salir">
                                     <i class="fa fa-sign-out"></i>  Cerrar sesión
                                 </a>
                             </li>
@@ -183,68 +173,9 @@
                     <strong>Guillermo Landazuri Amaya</strong>
                 </div>
             </div>
-
         </div>
     </div>
-    <!-- Mainly scripts -->
-    <script src="<?= base_url()?>PLANTILLA/js/jquery-3.1.1.min.js"></script>
-    <script src="<?= base_url()?>PLANTILLA/js/popper.min.js"></script>
-    <script src="<?= base_url()?>PLANTILLA/js/bootstrap.js"></script>
-    <script src="<?= base_url()?>PLANTILLA/js/plugins/metisMenu/jquery.metisMenu.js"></script>
-    <script src="<?= base_url()?>PLANTILLA/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-
-    <!-- Custom and plugin javascript -->
-    <script src="<?= base_url()?>PLANTILLA/js/inspinia.js"></script>
-    <script src="<?= base_url()?>PLANTILLA/js/plugins/pace/pace.min.js"></script>
-
-    <!-- Flot -->
-    <script src="<?= base_url()?>PLANTILLA/js/plugins/flot/jquery.flot.js"></script>
-    <script src="<?= base_url()?>PLANTILLA/js/plugins/flot/jquery.flot.tooltip.min.js"></script>
-    <script src="<?= base_url()?>PLANTILLA/js/plugins/flot/jquery.flot.resize.js"></script>
-
-    <!-- ChartJS-->
-    <script src="<?= base_url()?>PLANTILLA/js/plugins/chartJs/Chart.min.js"></script>
-
-    <!-- Peity -->
-    <script src="<?= base_url()?>PLANTILLA/js/plugins/peity/jquery.peity.min.js"></script>
-    <!-- Peity demo -->
-    <script src="<?= base_url()?>PLANTILLA/js/demo/peity-demo.js"></script>
-
-    <!-- Data Tables -->
-    <script src="<?= base_url()?>PLANTILLA/js/plugins/dataTables/datatables.min.js"></script>
-    <script src="<?= base_url()?>PLANTILLA/js/plugins/dataTables/dataTables.bootstrap4.min.js"></script>
-
-    <!-- Page-Level Scripts -->
-    <script>
-        $(document).ready(function(){
-            $('.dataTables-example').DataTable({
-                pageLength: 10,
-                responsive: true,
-                dom: '<"html5buttons"B>lTfgitp',
-                buttons: [
-                { extend: 'copy'},
-                {extend: 'csv'},
-                {extend: 'excel', title: 'ExampleFile'},
-                {extend: 'pdf', title: 'ExampleFile'},
-
-                {extend: 'print',
-                customize: function (win){
-                    $(win.document.body).addClass('white-bg');
-                    $(win.document.body).css('font-size', '10px');
-
-                    $(win.document.body).find('table')
-                    .addClass('compact')
-                    .css('font-size', 'inherit');
-                }
-            }
-            ]
-
-        });
-
-        });
-
-    </script>
-
+<?php require_once 'inc/js.php'; ?>
 </body>
 
 </html>
