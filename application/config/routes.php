@@ -55,5 +55,6 @@ $route['bienvenido'] = 'C_Tareas';
 $route['usuario'] = 'C_Usuario/actualizar';
 $route['salir'] = 'C_Usuario/salir';
 $route['api'] = 'C_Api';
+$route['tareas/crear'] = 'RestServer';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

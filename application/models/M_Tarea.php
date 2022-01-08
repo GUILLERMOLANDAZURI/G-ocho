@@ -2,7 +2,7 @@
 class M_Tarea extends Ci_Model{
 	public function __contruct(){
 		parent::__contruct();
-	}
+	} 
 	private $tabla = "Tareas";
 	public function insertar($datos){
 		return $this->db->insert($this->tabla,$datos);
@@ -18,6 +18,21 @@ class M_Tarea extends Ci_Model{
 	public function borrar($id){
 		$this->db->where("idTareas",$id);
 		return $this->db->delete($this->tabla);
+	}
+	public function verificar_usuario($datos){
+		$this->db->where("Finalizado",$datos);
+		$resultado = $this->db->get($this->tabla);
+		return $resultado->row_array();
+	}
+	public function estado($id,$datos){ 
+		$resultado = $this->db->query("SELECT COUNT(`idTareas`)as TOTAL FROM `Tareas` WHERE `Finalizado` = '".$datos."' and `Nombre` = '".$id."'");
+		return $resultado->result();
+	}
+
+	public function ListarTareas($id){
+		$this->db->where("Nombre",$id);
+		$resultado = $this->db->get($this->tabla);
+		return $resultado->result();
 	}
 }
 ?>
