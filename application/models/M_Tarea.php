@@ -9,6 +9,19 @@ class M_Tarea extends Ci_Model{
 	}
 	public function listar(){
 		$resultado = $this->db->get($this->tabla);
+		$this->db->order_by('FechaVencimiento', 'ASC');
+		return $resultado->result();
+	}
+	public function ListarTareas($id){
+		$this->db->where("Nombre",$id);
+		$this->db->order_by('FechaVencimiento', 'ASC');
+		$resultado = $this->db->get($this->tabla);
+		return $resultado->result();
+	}
+	public function ListarEstado($id){
+		$this->db->where("Finalizado",$id);
+		$this->db->order_by('FechaVencimiento', 'ASC');
+		$resultado = $this->db->get($this->tabla);
 		return $resultado->result();
 	}
 	public function Actualizar($id,$datos){
@@ -26,12 +39,6 @@ class M_Tarea extends Ci_Model{
 	}
 	public function estado($id,$datos){ 
 		$resultado = $this->db->query("SELECT COUNT(`idTareas`)as TOTAL FROM `Tareas` WHERE `Finalizado` = '".$datos."' and `Nombre` = '".$id."'");
-		return $resultado->result();
-	}
-
-	public function ListarTareas($id){
-		$this->db->where("Nombre",$id);
-		$resultado = $this->db->get($this->tabla);
 		return $resultado->result();
 	}
 }

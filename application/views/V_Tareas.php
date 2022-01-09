@@ -64,6 +64,7 @@
                             </div>
                         </div>
                     </div>
+                    <?php if ($this->session->userdata('device') != 'mobile') { ?>
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="ibox ">
@@ -78,16 +79,18 @@
                                         <table class="table table-striped table-bordered table-hover dataTables-example" >
                                             <thead>
                                                 <tr>
+                                                    <th>Id</th>
                                                     <th>Detalle</th>
                                                     <th>Creacion</th>
-                                                    <th>Vencimiento</th>
                                                     <th>Finalizo</th>
+                                                    <th>Vencimiento</th>
                                                     <th>Acciones</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <?php  foreach ($tareas as $value) { ?>
                                                 <tr>
+                                                    <td><?= $value->idTareas; ?></td>
                                                     <td><?= $value->Detalle; ?></td>
                                                     <td><?= $value->FechaCreacion; ?></td>
                                                     <td><?= $value->Finalizado; ?></td>
@@ -166,6 +169,119 @@
                             </div>
                         </div>
                     </div>
+                    <?php }else{  ?>
+
+                    <div class="card">
+                        <!-- Card header -->
+                        <div class="card-header">
+                            <!-- Title -->
+                            <h1 class="mb-0 text-center">TAREAS</h1>
+                        </div>
+                        <!-- Card body -->
+                        <div class="card-body">
+                            <?php foreach ($tareas as $value) { ?>
+
+                            <div class="row" style="padding: 0px 13px 0px 13px !important;">
+                                <div class="col-lg-12">
+                                    <div class="row">
+                                        <div class="col-6 text-success">
+                                            <?= $value->idTareas ?>
+                                        </div>
+                                        <div class="col-6 text-right">
+                                            <small class="dat text-right">Vencimiento <?= $value->FechaVencimiento ?></small> 
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <p align="justify"><?= $value->Detalle; ?></p>
+                                        </div>
+                                        <div class="col-12">
+                                            <p>Creacion <?= $value->FechaCreacion; ?></p>
+                                        </div>
+                                        <div class="col-12">
+                                            <p>Finalizo <?= $value->Finalizado; ?></p>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-12 text-right">
+                                            <form action="" method="post">
+                                                <div class="modal inmodal" id="A<?= $value->idTareas; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content animated bounceInRight">
+                                                                    <form class="m-t" role="form" action="" method="POST">
+                                                                        <div class="modal-header">
+                                                                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                                                            <i class="fa fa-laptop modal-icon"></i>
+                                                                            <h4 class="modal-title">Actualizar Tarea</h4>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <div class="form-group">
+                                                                                <label><b>Detalle de la tarea</b></label>
+                                                                                <textarea name="detalle" class="form-control"  rows="6" required="" ><?= $value->Detalle; ?></textarea>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label><b>Fecha vencimiento</b></label>
+                                                                                <input type="date" name="fecha" class="form-control" required="" value="<?= $value->FechaVencimiento; ?>" ></input>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label><b>Finalizo?</b></label>
+                                                                                <select class="form-control m-b" name="finalizo">
+                                                                                    <?php 
+                                                                                    if ($value->Finalizado == 'NO') { ?>
+                                                                                    <option value="NO">NO</option>
+                                                                                    <option value="SI">SI</option>
+                                                                                    <?php }else{ ?>
+                                                                                    <option value="SI">SI</option>
+                                                                                    <option value="NO">NO</option>
+                                                                                    <?php } ?>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-white" data-dismiss="modal">Cancelar</button>
+                                                                            <button type="submit" name="actualizar" value="<?= $value->idTareas; ?>" class="btn btn-primary">Actualizar Tarea</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="modal inmodal" id="E<?= $value->idTareas; ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content animated fadeIn">
+                                                                    <form class="m-t" role="form" action="" method="POST">
+                                                                        <div class="modal-header">
+                                                                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                                                                            <i class="fa fa-trash modal-icon"></i>
+                                                                            <h4 class="modal-title">Este proceso es irreversible.!</h4>
+                                                                            <?= $value->Detalle; ?>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-white" data-dismiss="modal">Cerrar</button>
+                                                                            <button type="submit" name="borrar" value="<?= $value->idTareas; ?>" class="btn btn-danger">Borrar tarea</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                            <button class="btn btn-warning btn-xs" type="button" data-toggle="modal" href="#A<?= $value->idTareas; ?>"><i class="fa fa-pencil"></i> <span class="bold"></span>
+                                                            </button>
+                                                            <button class="btn btn-danger btn-xs" type="button" data-toggle="modal" href="#E<?= $value->idTareas; ?>"><i class="fa fa-times"></i> <span class="bold"></span></button> 
+                                                        
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                </div>
+                            </div>
+
+                            <?php }?>
+                        </div>
+                    </div>
+
+                    <?php } ?>
                 </div>
             </div>
             <div class="footer">
@@ -173,6 +289,13 @@
                     <strong>Guillermo Landazuri Amaya</strong>
                 </div>
             </div>
+            <?php if ($this->session->userdata('device') == 'mobile') { ?>
+            <div id="small-chat">
+                <button class="btn btn-icon-only btn-success" type="button" data-toggle="modal" href="#myModal4">
+                    <span ><i class="fa fa-plus"></i></span>
+                </button>
+            </div>
+            <?php }?>
         </div>
     </div>
     <?php require_once 'inc/js.php'; ?>
